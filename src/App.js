@@ -58,6 +58,8 @@ function App() {
       responses.push(response);
     }
 
+    Promise.all(responses)
+
     // Return results to be displayed and change application loading state:
     setGettingData(false);
     console.log(result);
