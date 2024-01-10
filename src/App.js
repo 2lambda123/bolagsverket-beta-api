@@ -95,7 +95,12 @@ return data;
 
     try {
       let response = await fetch(url, postOptions)
-      console.log(JSON.stringify(response))
+      if (!response.ok) {
+        throw new Error('Failed to get access token');
+      }
+      const data = await response.json();
+      console.log(data);
+      setGeneratingToken(false);
     } 
     catch (error) {
       console.error(error)
@@ -106,7 +111,7 @@ return data;
   }
 
   const toast = useToast();
-  let token = "";
+  const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
 
   const formik = useFormik({
