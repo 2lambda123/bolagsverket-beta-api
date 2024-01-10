@@ -111,26 +111,9 @@ function App() {
       getAuthToken(values);
       toast({
         title: 'Login',
-        description: "Token generation successful.",
-        status: 'success',
-        duration: 4500,
-        isClosable: true,
-      })
-
-      toast({
-        title: 'Login',
-        description: "Token generation failed.",
-        status: 'error',
-        duration: 4500,
-        isClosable: true,
-      })
-
-      toast({
-        title: 'Token',
-        description: "Token is valid for 1 hour.",
+        description: "Token generation started.",
         status: 'info',
-        position: "top",
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       })
     },
