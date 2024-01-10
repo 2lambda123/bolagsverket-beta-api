@@ -58,7 +58,7 @@ function App() {
       responses.push(response);
     }
 
-    Promise.all(responses)
+    Promise.all(responses).then((results) => { console.log(results); return results; }).catch((error) => { console.error('Error fetching data:', error); toast({ title: 'Error', description: 'Failed to fetch data from the API.', status: 'error', duration: 4500, isClosable: true, }); });
 
     // Return results to be displayed and change application loading state:
     setGettingData(false);
