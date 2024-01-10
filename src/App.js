@@ -42,6 +42,13 @@ function App() {
     // Get data from API url with token for each org.nr in array
     const responses = [];
     for (const number of organisationNumberArray) {
+const results = await Promise.all(responses);
+const data = await Promise.all(results.map(response => response.json()));
+
+// Return results to be displayed and change application loading state:
+setGettingData(false);
+console.log(data);
+return data;
       let response = fetch(url, {
         method: "POST",
         headers: {
