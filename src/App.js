@@ -121,30 +121,7 @@ return data;
     },
     onSubmit: (values) => {
       getAuthToken(values);
-      toast({
-        title: 'Login',
-        description: "Token generation successful.",
-        status: 'success',
-        duration: 4500,
-        isClosable: true,
-      })
-
-      toast({
-        title: 'Login',
-        description: "Token generation failed.",
-        status: 'error',
-        duration: 4500,
-        isClosable: true,
-      })
-
-      toast({
-        title: 'Token',
-        description: "Token is valid for 1 hour.",
-        status: 'info',
-        position: "top",
-        duration: 9000,
-        isClosable: true,
-      })
+      
     },
   })
 
