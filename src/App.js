@@ -87,7 +87,9 @@ function App() {
     }
 
     try {
-      let response = await fetch(url, postOptions)
+      let response = await fetch(url, postOptions);
+    let data = await response.json();
+    console.log(data);
       console.log(JSON.stringify(response))
     } 
     catch (error) {
@@ -107,7 +109,7 @@ function App() {
       id: "",
       secret: "",
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       getAuthToken(values);
       toast({
         title: 'Login',
@@ -146,7 +148,7 @@ function App() {
               bearerToken: "",
               inputText: "",
             }}
-            onSubmit={(values) => {
+            onSubmit={async (values) => {
               getData(values.bearerToken, values.inputText)
             }}
           >
@@ -156,7 +158,7 @@ function App() {
                   <FormControl isInvalid={!!errors.bearerToken && touched.bearerToken}>
                     <FormLabel htmlFor="bearerToken">Bearer Token</FormLabel>
                     <Field
-                      as={Input}
+                      as={Input} onChange={formik.handleChange} value={formik.values.bearerToken} name="bearerToken" error={errors.bearerToken} isInvalid={touched.bearerToken && !!errors.bearerToken}
                       id="bearerToken"
                       name="bearerToken"
                       type="password"
@@ -171,30 +173,21 @@ function App() {
                         return error;
                       }}
                     />
-                    <FormErrorMessage>{errors.bearerToken}</FormErrorMessage>
+                    {errors.bearerToken}
 
                   </FormControl>
                   <FormControl isInvalid={!!errors.inputText && touched.inputText}>
                     <FormLabel htmlFor="inputText">Text Input</FormLabel>
                     <Field
                       as={Textarea}
-                      id="inputText"
+                      onChange={formik.handleChange}
+                      value={formik.values.inputText}
                       name="inputText"
                       type="text"
-                      variant="filled"
-                      validate={(value) => {
-                        let error;
-
-                        if (value.length < 10) {
-                          error = "You need at least one org.nr";
-                        }
-
-                        return error;
-                      }}
-                    />
+                      variant="filled"/>
                     <FormErrorMessage>{errors.inputText}</FormErrorMessage>
                   </FormControl>
-                  <Button isLoading={gettingData} type="submit" colorScheme="blue" width="full">
+                  <Button isLoading={gettingData} loadingText="Getting Data" type="submit" colorScheme="blue" width="full">
                     Get data
                   </Button>
                 </VStack>
